@@ -1,13 +1,30 @@
-# ring.middleware.filter-routes
-
-A Clojure library designed to ... well, that part is up to you.
+# ring-filter-routes
+Very simple route filtering middleware
 
 ## Usage
+Takes a vector of filter rules. Each rule is a hash-map of :url a :check function and an :else-action to execute if the check fails.
+For instance
 
-FIXME
+```clojure
+(def app-filters
+  [{:url "/moria"
+    :check (fn [] (= (session/current-user) :balrog))
+    :else-action (fn [] (ring/redirect "/shallnotpass"))}
+
+   {:url "/winterfell"
+    :check (fn [] (= (westeros/season) :winter))
+    :else-action (fn [] (do (println "Winter is Coming...")
+                           (ring/redirect "/season1")))}])
+;in your app def just add
+(def app
+  (-> (handler/site main-routes)
+      (wrap-base-url)
+      (wrap-filter-routes app-filters)))
+
+```
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Omer Iqbal
 
 Distributed under the Eclipse Public License, the same as Clojure.

@@ -21,3 +21,13 @@
       (is (=
            ((wrap-filter-routes app filters) req2)
            "gandalf")))))
+
+(def app-filters
+  [{:url "/moria"
+    :check (fn [] (= (session/current-user) :balrog))
+    :else-action (fn [] (ring/redirect "/shallnotpass"))}
+
+   {:url "/winterfell"
+    :check (fn [] (= (westeros/season) :winter))
+    :else-action (fn [] (do (println "Winter is Coming...")
+                           (ring/redirect "/season1")))}])
