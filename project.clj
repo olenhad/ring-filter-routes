@@ -1,4 +1,4 @@
-(defproject ring-filter-routes "0.1.0-SNAPSHOT"
+(defproject ring-filter-routes "0.1.1"
   :description "simple route filtering middleware"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
