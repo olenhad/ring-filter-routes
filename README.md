@@ -1,5 +1,11 @@
 # ring-filter-routes
 Very simple route filtering middleware
+To use, add to your project's dependencies:
+
+```clojure
+:dependencies [[org.clojure/clojure "1.4.0"]
+               [ring-filter-routes "0.1.1"]]
+```
 
 ## Usage
 Takes a vector of filter rules. Each rule is a hash-map of :url a :check function and an :else-action to execute if the check fails.
