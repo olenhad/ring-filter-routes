@@ -28,7 +28,7 @@ For instance
       (wrap-filter-routes app-filters)))
 
 ```
-
+The function passed as :else-action is executed instead of (app req), so make sure you add an appropriate ring response.
 ## License
 
 Copyright © 2013 Omer Iqbal
