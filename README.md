@@ -14,12 +14,12 @@ For instance
 ```clojure
 (def app-filters
   [{:url "/moria"
-    :check (fn [] (= (session/current-user) :balrog))
-    :else-action (fn [] (ring/redirect "/shallnotpass"))}
+    :check (fn [req] (= (session/current-user) :balrog))
+    :else-action (fn [req] (ring/redirect "/shallnotpass"))}
 
-   {:url "/winterfell"
-    :check (fn [] (= (westeros/season) :winter))
-    :else-action (fn [] (do (println "Winter is Coming...")
+   {:url #"/winterfell/.*"
+    :check (fn [req] (= (westeros/season) :winter))
+    :else-action (fn [req] (do (println "Winter is Coming...")
                            (ring/redirect "/season1")))}])
 ;in your app def just add
 (def app

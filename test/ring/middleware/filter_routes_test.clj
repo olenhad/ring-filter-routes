@@ -5,11 +5,12 @@
 (deftest basic
   (testing "FIXME, I fail."
     (let [filters [{:url "/pass"
-                    :check (fn [] true)
-                    :else-action (fn [] "fucked up")}
+                    :check (fn [req] true)
+                    :else-action (fn [req] "fucked up")}
                    {:url "/shallnotpass"
-                    :check (fn [] false)
-                    :else-action (fn [] "gandalf")}
+                    :check (fn [req] false)
+                    :else-action (fn [req] "gandalf")}
+
                    ]
           req1 {:uri "/pass"}
           req2 {:uri "/shallnotpass"}
